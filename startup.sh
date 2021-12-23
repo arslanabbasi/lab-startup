@@ -10,7 +10,13 @@ tanzu package install tap -p tap.tanzu.vmware.com -v 0.4.0 --values-file /home/h
 
 tanzu package installed list -A
 
+port=$(kubectl get svc server -n tap-gui -o=jsonpath='{.spec.ports[].nodePort}')
+#echo $port
 
-#tanzu package installed update tap --package-name tap.tanzu.vmware.com --version 0.4.0 -n tap-install -f /home/holuser/tap-values-dev-harbor.yaml
+sed -i "s/32739/$port/g" /home/holuser/tap-values-dev-harbor.yaml
+#cat /home/holuser/tap-values-dev-harbor.yaml
+
+tanzu package installed update tap --package-name tap.tanzu.vmware.com --version 0.4.0 -n tap-install -f /home/holuser/tap-values-dev-harbor.yaml
+
 echo "IP: $1"
 echo "Install Finished"
