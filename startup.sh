@@ -6,9 +6,9 @@
 
 sed -i "s/10.126.106.15/$1/g" /home/holuser/tap-values-dev-harbor.yaml
 
-#tanzu package install tap -p tap.tanzu.vmware.com -v 0.4.0 --values-file tap-values-dev-harbor.yaml -n tap-install
+tanzu package install tap -p tap.tanzu.vmware.com -v 0.4.0 --values-file tap-values-dev-harbor.yaml -n tap-install
 
-#tanzu package installed list -A
+tanzu package installed list -A
 
 
 #tanzu package installed update tap --package-name tap.tanzu.vmware.com --version 0.4.0 -n tap-install -f tap-values-dev-harbor.yaml
