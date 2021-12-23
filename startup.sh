@@ -9,4 +9,4 @@
 #tanzu package installed update tap --package-name tap.tanzu.vmware.com --version 0.4.0 -n tap-install -f tap-values-dev-harbor.yaml
 
 echo "I am starting1"
-echo "testing"
+echo "testing2"
