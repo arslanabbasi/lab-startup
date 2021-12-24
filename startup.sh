@@ -4,7 +4,9 @@
 #exec 1>log.out 2>&1
 
 
-sed -i "s/10.126.106.15/$1/g" /home/holuser/tap-values-dev-harbor.yaml
+sed "s/10.126.106.15:/$1:/g" /home/holuser/tap-values-dev-harbor.yaml
+
+exit 1
 
 tanzu package install tap -p tap.tanzu.vmware.com -v 0.4.0 --values-file /home/holuser/tap-values-dev-harbor.yaml -n tap-install
 
