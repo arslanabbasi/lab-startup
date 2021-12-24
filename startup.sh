@@ -3,7 +3,11 @@
 #trap 'exec 2>&4 1>&3' 0 1 2 3
 #exec 1>log.out 2>&1
 
-
+if [ $1 != '' ]
+then
+  echo "Please provide IP as an argument"
+  exit 1
+fi
 sed -i "s/10.126.106.15:/$1:/g" /home/holuser/tap-values-dev-harbor.yaml
 sed -i "s/10.126.106.15./192.168.0.2./g" /home/holuser/tap-values-dev-harbor.yaml
 
