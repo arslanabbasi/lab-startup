@@ -8,6 +8,9 @@ then
   echo "Please provide IP as an argument"
   exit 1
 fi
+ip=$(curl myip.oc.vmware.com)
+echo $ip
+exit 1
 sed -i "s/10.126.106.15:/$1:/g" /home/holuser/tap-values-dev-harbor.yaml
 sed -i "s/10.126.106.15./192.168.0.2./g" /home/holuser/tap-values-dev-harbor.yaml
 
