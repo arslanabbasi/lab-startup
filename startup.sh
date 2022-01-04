@@ -33,6 +33,6 @@ echo "Install Finished"
 echo
 echo
 echo "TAP GUI: $ip:$port"
-echo "Internal Harbor: $ip:30003"
+echo "Internal Harbor: https://$ip:30003 - admin / VMware1!"
 echo "SSH Details: ssh holuser@$ip"
 echo "Password: VMware1!"
