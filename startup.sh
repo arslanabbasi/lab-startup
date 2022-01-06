@@ -4,6 +4,22 @@ trap 'exec 2>&4 1>&3' 0 1 2 3
 exec 1>/home/holuser/install.log 2>&1
 
 # Version 0.4.0
+
+counter=0
+while [ "True" ]
+do
+  if [[ $counter -ge 20 ]]; then echo "Exiting, k8s is not up";exit 1; fi
+  counter=$counter+1
+
+  kubectl cluster-info
+  if [[ $? -eq 0 ]]
+  then
+    sleep 5
+    echo "k8s is up. Continuing with install"
+    break
+  fi
+  sleep 5
+done
 echo "I am running"
 exit 0
 
