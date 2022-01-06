@@ -20,7 +20,6 @@ do
   fi
   sleep 5
 done
-echo "I am running"
 exit 0
 
 ip=$(curl myip.oc.vmware.com)
