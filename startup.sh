@@ -21,6 +21,7 @@ do
   sleep 5
 done
 
+exit 0
 ip=$(curl myip.oc.vmware.com)
 echo "My IP: $ip"
 echo "Setting tap values yaml file"
