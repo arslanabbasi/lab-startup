@@ -3,11 +3,9 @@
 #trap 'exec 2>&4 1>&3' 0 1 2 3
 #exec 1>log.out 2>&1
 
-#if [ $1 == '' ]
-#then
-#  echo "Please provide IP as an argument"
-#  exit 1
-#fi
+# Version 0.4.0
+
+exit 0
 ip=$(curl myip.oc.vmware.com)
 echo "My IP: $ip"
 echo "Setting tap values yaml file"
