@@ -22,7 +22,8 @@ do
 done
 
 exit 0
-ip=$(curl myip.oc.vmware.com)
+#ip=$(curl myip.oc.vmware.com)
+ip="192.168.0.2"
 echo "My IP: $ip"
 echo "Setting tap values yaml file"
 sed -i "s/10.126.106.15:/$ip:/g" /home/holuser/tap-values-dev-harbor.yaml
