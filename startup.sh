@@ -4,7 +4,7 @@
 #exec 1>/home/holuser/install.log 2>&1
 
 # Version 0.4.0
-date
+date > /home/holuser/time
 counter=0
 while [ "True" ]
 do
