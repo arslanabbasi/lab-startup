@@ -1,11 +1,12 @@
 #!/bin/bash
-#exec 3>&1 4>&2
-#trap 'exec 2>&4 1>&3' 0 1 2 3
-#exec 1>log.out 2>&1
+exec 3>&1 4>&2
+trap 'exec 2>&4 1>&3' 0 1 2 3
+exec 1>/home/holuser/install.log 2>&1
 
 # Version 0.4.0
-
+echo "I am running"
 exit 0
+
 ip=$(curl myip.oc.vmware.com)
 echo "My IP: $ip"
 echo "Setting tap values yaml file"
