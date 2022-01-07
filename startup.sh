@@ -11,7 +11,7 @@ do
   if [[ $counter -ge 200 ]]; then echo "Exiting, k8s is not up";exit 1; fi
   counter=$counter+1
 
-  kubectl cluster-info
+  $(kubectl cluster-info)
   if [[ $? -eq 0 ]]
   then
     sleep 5
