@@ -4,6 +4,8 @@ trap 'exec 2>&4 1>&3' 0 1 2 3
 exec 1>/home/holuser/install.log 2>&1
 
 # Version 0.4.0
+KUBECONFIG="/home/holuser/.kube/config"
+
 date
 counter=0
 while [ "True" ]
