@@ -7,8 +7,9 @@ exec 1>/home/holuser/Desktop/install.log 2>&1
 export KUBECONFIG="/home/holuser/.kube/config"
 export HOME="/home/holuser"
 
-sudo chown holuser:holuser -R /home/holuser/lab-startup
 sudo chown holuser:holuser /home/holuser/Desktop/install.log
+
+exit 0
 
 date
 counter=0
