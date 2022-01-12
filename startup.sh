@@ -49,12 +49,10 @@ sed -i "s/31443/$port/g" /home/holuser/tap-values-dev-harbor.yaml
 
 tanzu package installed update tap --package-name tap.tanzu.vmware.com --version 0.4.0 -n tap-install -f /home/holuser/tap-values-dev-harbor.yaml
 
-curl myip.oc.vmware.com
-
 echo "Install Finished"
 echo
 echo
 echo "TAP GUI: $ip:$port"
 echo "Internal Harbor: https://$ip:30003 - admin / VMware1!"
-echo "SSH Details: ssh holuser@$ip"
+echo "SSH Details: ssh holuser@$(curl myip.oc.vmware.com)"
 echo "Password: VMware1!"
