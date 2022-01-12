@@ -1,7 +1,7 @@
 #!/bin/bash
 exec 3>&1 4>&2
 trap 'exec 2>&4 1>&3' 0 1 2 3
-exec 1>/home/holuser/install.log 2>&1
+exec 1>/home/holuser/Desktop/install.log 2>&1
 
 # Version 0.4.0
 export KUBECONFIG="/home/holuser/.kube/config"
@@ -28,7 +28,6 @@ kubectl get pods
 
 tanzu package installed list -A
 
-exit 0
 #ip=$(curl myip.oc.vmware.com)
 ip="192.168.0.2"
 echo "My IP: $ip"
@@ -50,6 +49,7 @@ sed -i "s/31443/$port/g" /home/holuser/tap-values-dev-harbor.yaml
 
 tanzu package installed update tap --package-name tap.tanzu.vmware.com --version 0.4.0 -n tap-install -f /home/holuser/tap-values-dev-harbor.yaml
 
+curl myip.oc.vmware.com
 
 echo "Install Finished"
 echo
