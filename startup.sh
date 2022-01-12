@@ -34,7 +34,7 @@ echo "CLEANUP"
 echo "Get installed repoitory"
 tanzu package repository get tanzu-tap-repository --namespace tap-install
 echo "Delete Existing repository"
-tanzu package repository delete tanzu-tap-repository -n tap-install
+yes | tanzu package repository delete tanzu-tap-repository -n tap-install
 echo "Install repo"
 tanzu package repository add tanzu-tap-repository --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.0.0   --namespace tap-install
 echo "Get installed repoitory"
