@@ -36,7 +36,7 @@ kubectl get pods
 tanzu package installed list -A
 
 #echo "CLEANUP"
-echo "Get installed repoitory"
+echo "Get installed repository"
 tanzu package repository get tanzu-tap-repository --namespace tap-install
 #echo "Delete Existing repository"
 #yes | tanzu package repository delete tanzu-tap-repository -n tap-install
