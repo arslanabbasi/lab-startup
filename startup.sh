@@ -12,6 +12,8 @@ echo "" > /home/holuser/.bash_history
 
 sudo rm -r /var/crash/*
 
+cat /home/holuser/tap-values-dev-harbor.yaml
+
 date
 counter=0
 while [ "True" ]
@@ -34,8 +36,8 @@ kubectl get pods
 tanzu package installed list -A
 
 #echo "CLEANUP"
-#echo "Get installed repoitory"
-#tanzu package repository get tanzu-tap-repository --namespace tap-install
+echo "Get installed repoitory"
+tanzu package repository get tanzu-tap-repository --namespace tap-install
 #echo "Delete Existing repository"
 #yes | tanzu package repository delete tanzu-tap-repository -n tap-install
 #echo "Install repo"
