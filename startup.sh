@@ -6,11 +6,16 @@ exec 1>/home/holuser/install.log 2>&1
 # Version 0.4.0
 KUBECONFIG="/home/holuser/.kube/config"
 
+pwd
+
+cat /home/holuser/.kube/config
+kubectl get pods
+
 date
 counter=0
 while [ "True" ]
 do
-  if [[ $counter -ge 200 ]]; then echo "Exiting, k8s is not up";exit 1; fi
+  if [[ $counter -ge 20 ]]; then echo "Exiting, k8s is not up";exit 1; fi
   counter=$counter+1
 
   kubectl cluster-info
