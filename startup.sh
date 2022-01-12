@@ -6,15 +6,15 @@ exec 1>/home/holuser/install.log 2>&1
 # Version 0.4.0
 KUBECONFIG="/home/holuser/.kube/config"
 
-pwd
-whoami
+echo "pwd: $pwd"
+
+echo "whoami $whoami"
 
 echo "Home: $HOME"
 
 cat /home/holuser/.kube/config
 kubectl get pods --kubeconfig /home/holuser/.kube/config
 
-tanzu package installed list -A
 
 date
 counter=0
@@ -32,6 +32,10 @@ do
   fi
   sleep 5
 done
+
+kubectl get pods
+
+tanzu package installed list -A
 
 exit 0
 #ip=$(curl myip.oc.vmware.com)
