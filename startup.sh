@@ -12,6 +12,8 @@ whoami
 cat /home/holuser/.kube/config
 kubectl get pods --kubeconfig /home/holuser/.kube/config
 
+tanzu package installed list -A
+
 date
 counter=0
 while [ "True" ]
@@ -19,7 +21,7 @@ do
   if [[ $counter -ge 20 ]]; then echo "Exiting, k8s is not up";exit 1; fi
   counter=$counter+1
 
-  kubectl cluster-info
+  kubectl cluster-info --kubeconfig /home/holuser/.kube/config
   if [[ $? -eq 0 ]]
   then
     sleep 5
