@@ -4,11 +4,14 @@ trap 'exec 2>&4 1>&3' 0 1 2 3
 exec 1>/home/holuser/install.log 2>&1
 
 # Version 0.4.0
-KUBECONFIG="/home/holuser/.kube/config"
+export KUBECONFIG="/home/holuser/.kube/config"
+export HOME="/home/holuser"
 
-echo "pwd: $pwd"
+echo "pwd: $(pwd)"
+pwd
 
-echo "whoami $whoami"
+echo "whoami $(whoami)"
+whoami
 
 echo "Home: $HOME"
 
