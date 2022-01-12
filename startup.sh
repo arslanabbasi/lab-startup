@@ -9,6 +9,8 @@ export HOME="/home/holuser"
 
 sudo chown holuser:holuser /home/holuser/Desktop/install.log
 
+exit 0
+
 date
 counter=0
 while [ "True" ]
