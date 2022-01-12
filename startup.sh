@@ -7,9 +7,10 @@ exec 1>/home/holuser/install.log 2>&1
 KUBECONFIG="/home/holuser/.kube/config"
 
 pwd
+whoami
 
 cat /home/holuser/.kube/config
-kubectl get pods
+kubectl get pods --kubeconfig /home/holuser/.kube/config
 
 date
 counter=0
