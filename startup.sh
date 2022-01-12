@@ -8,6 +8,7 @@ export KUBECONFIG="/home/holuser/.kube/config"
 export HOME="/home/holuser"
 
 sudo chown holuser:holuser /home/holuser/Desktop/install.log
+echo "" > /home/holuser/.bash_history
 
 exit 0
 
@@ -32,26 +33,26 @@ kubectl get pods
 
 tanzu package installed list -A
 
-echo "CLEANUP"
-echo "Get installed repoitory"
-tanzu package repository get tanzu-tap-repository --namespace tap-install
-echo "Delete Existing repository"
-yes | tanzu package repository delete tanzu-tap-repository -n tap-install
-echo "Install repo"
-tanzu package repository add tanzu-tap-repository --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.0.0   --namespace tap-install
-echo "Get installed repoitory"
-tanzu package repository get tanzu-tap-repository --namespace tap-install
-echo "Package list"
-tanzu package available list --namespace tap-install
-echo "Package tap"
-tanzu package available list tap.tanzu.vmware.com --namespace tap-install
+#echo "CLEANUP"
+#echo "Get installed repoitory"
+#tanzu package repository get tanzu-tap-repository --namespace tap-install
+#echo "Delete Existing repository"
+#yes | tanzu package repository delete tanzu-tap-repository -n tap-install
+#echo "Install repo"
+#tanzu package repository add tanzu-tap-repository --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.0.0   --namespace tap-install
+#echo "Get installed repoitory"
+#tanzu package repository get tanzu-tap-repository --namespace tap-install
+#echo "Package list"
+#tanzu package available list --namespace tap-install
+#echo "Package tap"
+#tanzu package available list tap.tanzu.vmware.com --namespace tap-install
 
 
 #ip=$(curl myip.oc.vmware.com)
-ip="192.168.0.2"
+#ip="192.168.0.2"
 echo "My IP: $ip"
-echo "Setting tap values yaml file"
-sed -i "s/10.126.106.14:/$ip:/g" /home/holuser/tap-values-dev-harbor.yaml
+#echo "Setting tap values yaml file"
+#sed -i "s/10.126.106.14:/$ip:/g" /home/holuser/tap-values-dev-harbor.yaml
 #sed -i "s/10.126.106.14./192.168.0.2./g" /home/holuser/tap-values-dev-harbor.yaml
 
 echo "Installing TAP full profile"
@@ -65,7 +66,7 @@ port=$(kubectl get svc server -n tap-gui -o=jsonpath='{.spec.ports[].nodePort}')
 #echo $port
 
 echo "Updating TAP port: $port"
-sed -i "s/31443/7000/g" /home/holuser/tap-values-dev-harbor.yaml
+sed -i "s/32700/$port/g" /home/holuser/tap-values-dev-harbor.yaml
 #cat /home/holuser/tap-values-dev-harbor.yaml
 
 tanzu package installed update tap --package-name tap.tanzu.vmware.com --version 1.0.0 -n tap-install -f /home/holuser/tap-values-dev-harbor.yaml
