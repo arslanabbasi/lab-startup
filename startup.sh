@@ -62,6 +62,8 @@ tanzu package install tap -p tap.tanzu.vmware.com -v 1.0.0 --values-file /home/h
 
 tanzu package installed get tap -n tap-install
 
+tanzu package installed list --namespace tap-install
+
 tanzu package installed list -A
 
 port=$(kubectl get svc server -n tap-gui -o=jsonpath='{.spec.ports[].nodePort}')
