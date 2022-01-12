@@ -8,10 +8,8 @@ export KUBECONFIG="/home/holuser/.kube/config"
 export HOME="/home/holuser"
 
 echo "pwd: $(pwd)"
-pwd
 
 echo "whoami $(whoami)"
-whoami
 
 echo "Home: $HOME"
 
