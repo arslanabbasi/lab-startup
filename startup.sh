@@ -10,9 +10,6 @@ export HOME="/home/holuser"
 sudo chown holuser:holuser -R /home/holuser/lab-startup
 sudo chown holuser:holuser /home/holuser/Desktop/install.log
 
-git fetch --all
-git reset --hard origin/1.0.0
-
 date
 counter=0
 while [ "True" ]
