@@ -9,6 +9,8 @@ KUBECONFIG="/home/holuser/.kube/config"
 pwd
 whoami
 
+echo "Home: $HOME"
+
 cat /home/holuser/.kube/config
 kubectl get pods --kubeconfig /home/holuser/.kube/config
 
