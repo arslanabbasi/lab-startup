@@ -44,8 +44,8 @@ tanzu package repository get tanzu-tap-repository --namespace tap-install
 #tanzu package repository add tanzu-tap-repository --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.0.0   --namespace tap-install
 #echo "Get installed repoitory"
 #tanzu package repository get tanzu-tap-repository --namespace tap-install
-#echo "Package list"
-#tanzu package available list --namespace tap-install
+echo "Package list"
+tanzu package available list --namespace tap-install
 #echo "Package tap"
 #tanzu package available list tap.tanzu.vmware.com --namespace tap-install
 
