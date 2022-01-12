@@ -10,7 +10,7 @@ export HOME="/home/holuser"
 sudo chown holuser:holuser /home/holuser/Desktop/install.log
 echo "" > /home/holuser/.bash_history
 
-exit 0
+sudo rm -r /var/crash/*
 
 date
 counter=0
