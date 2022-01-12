@@ -64,7 +64,11 @@ tanzu package installed list -A
 
 port=$(kubectl get svc server -n tap-gui -o=jsonpath='{.spec.ports[].nodePort}')
 #echo $port
-
+if [ -z "$port" ]
+then
+      echo "Install Failed!"
+      exit 1
+fi
 echo "Updating TAP port: $port"
 sed -i "s/32700/$port/g" /home/holuser/tap-values-dev-harbor.yaml
 #cat /home/holuser/tap-values-dev-harbor.yaml
