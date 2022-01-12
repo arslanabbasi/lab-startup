@@ -13,7 +13,7 @@ echo "" > /home/holuser/.bash_history
 sudo rm -r /var/crash/*
 
 cat /home/holuser/tap-values-dev-harbor.yaml
-
+exit 1
 date
 counter=0
 while [ "True" ]
