@@ -103,3 +103,4 @@ echo "TAP GUI: $ip:$port"
 echo "Internal Harbor: https://$ip:30003 - admin / VMware1!"
 echo "SSH Details: ssh holuser@$(curl myip.oc.vmware.com 2>/dev/null)"
 echo "Password: VMware1!"
+touch /home/holuser/Desktop/READY
