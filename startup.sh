@@ -3,6 +3,8 @@ exec 3>&1 4>&2
 trap 'exec 2>&4 1>&3' 0 1 2 3
 exec 1>/home/holuser/Desktop/install.log 2>&1
 
+touch /home/holuser/Desktop/INSTALLING-TAP
+
 # Version 1.0.0
 export KUBECONFIG="/home/holuser/.kube/config"
 export HOME="/home/holuser"
@@ -103,4 +105,6 @@ echo "TAP GUI: $ip:$port"
 echo "Internal Harbor: https://$ip:30003 - admin / VMware1!"
 echo "SSH Details: ssh holuser@$(curl myip.oc.vmware.com 2>/dev/null)"
 echo "Password: VMware1!"
+
+rm -f /home/holuser/Desktop/INSTALLING-TAP
 touch /home/holuser/Desktop/READY
