@@ -5,9 +5,13 @@ exec 1>/home/holuser/Desktop/install.log 2>&1
 
 touch /home/holuser/Desktop/INSTALLING-TAP
 
+
 # Version 1.0.0
 export KUBECONFIG="/home/holuser/.kube/config"
 export HOME="/home/holuser"
+
+wget https://d1fto35gcfffzn.cloudfront.net/tanzu/tanzu-bug.svg -O /home/holuser/tanzu.svg
+notify-send "Installing TAP - please wait" -t 100000 -i /home/holuser/tanzu.svg
 
 sudo chown holuser:holuser /home/holuser/Desktop/install.log
 echo "" > /home/holuser/.bash_history
@@ -106,5 +110,6 @@ echo "Internal Harbor: https://$ip:30003 - admin / VMware1!"
 echo "SSH Details: ssh holuser@$(curl myip.oc.vmware.com 2>/dev/null)"
 echo "Password: VMware1!"
 
+notify-send "LAB is ready" -t 100000 -i /home/holuser/tanzu.svg
 rm -f /home/holuser/Desktop/INSTALLING-TAP
 touch /home/holuser/Desktop/READY
