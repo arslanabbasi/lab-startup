@@ -48,7 +48,24 @@ echo "Package list"
 tanzu package available list --namespace tap-install
 #echo "Package tap"
 #tanzu package available list tap.tanzu.vmware.com --namespace tap-install
+echo "harbor"
+curl -v https://192.168.0.2:30003
 
+counter=0
+while [ "True" ]
+do
+  if [[ $counter -ge 20 ]]; then echo "Exiting, Harbor is not up";exit 1; fi
+  counter=$counter+1
+
+  curl -v https://192.168.0.2:30003
+  if [[ $? -eq 0 ]]
+  then
+    sleep 5
+    echo "Harbor is up. Continuing with install"
+    break
+  fi
+  sleep 5
+done
 
 #ip=$(curl myip.oc.vmware.com)
 ip="192.168.0.2"
