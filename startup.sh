@@ -116,6 +116,7 @@ touch /home/holuser/Desktop/READY
 
 
 ## Installing workshop pre-reqs
+git clone https://github.com/arslanabbasi/tap-workshop.git
 
 # Installing ytt
 wget -O- https://carvel.dev/install.sh > install.sh
