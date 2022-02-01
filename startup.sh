@@ -132,7 +132,7 @@ kubectl create namespace gitea
 bash /home/holuser/tap-workshop/install/gitea/install-gitea.sh /home/holuser/tap-workshop/install/values/values.yaml
 
 
-giteaIP=$(k get svc -n gitea gitea-http -o json | jq -r .spec.clusterIP)
+giteaIP=$(kubectl get svc -n gitea gitea-http -o json | jq -r .spec.clusterIP)
 echo "Gitea IP:port - $giteaIP:3000"
 
 
