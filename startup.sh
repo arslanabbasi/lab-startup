@@ -140,7 +140,21 @@ bash /home/holuser/tap-workshop/install/gitea/install-gitea.sh /home/holuser/tap
 giteaIP=$(kubectl get svc -n gitea gitea-http -o json | jq -r .spec.clusterIP)
 echo "Gitea IP:port - $giteaIP:3000\n Username=gitea_admin\n Password=VMware1!"
 
+counter=0
+while [ "True" ]
+do
+  if [[ $counter -ge 100 ]]; then echo "Exiting, Gitea is not up";exit 1; fi
+  counter=$counter+1
 
+  curl -v http://$giteaIP:3000
+  if [[ $? -eq 0 ]]
+  then
+    sleep 5
+    echo "Gitea is up. Continuing with install"
+    break
+  fi
+  sleep 5
+done
 
 # Installing Workshop
 # https://github.com/arslanabbasi/tap-workshop/blob/main/install/workshop/README.md
