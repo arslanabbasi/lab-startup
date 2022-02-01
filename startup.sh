@@ -113,3 +113,42 @@ echo "Password: VMware1!"
 notify-send "LAB is ready" -t 100000 -i /home/holuser/tanzu.svg
 rm -f /home/holuser/Desktop/INSTALLING-TAP
 touch /home/holuser/Desktop/READY
+
+
+## Installing workshop pre-reqs
+
+# Installing ytt
+wget -O- https://carvel.dev/install.sh > install.sh
+
+# Inspect install.sh before running...
+sudo bash install.sh
+ytt version
+
+# Intall gitea
+
+kubectl create namespace gitea
+bash /home/holuser/tap-workshop/install/gitea/install-gitea.sh /home/holuser/tap-workshop/install/values/values.yaml
+
+
+giteaIP=$(k get svc -n gitea gitea-http -o json | jq -r .spec.clusterIP)
+echo "Gitea IP:port - $giteaIP:3000"
+
+# Installing Workshop
+# https://github.com/arslanabbasi/tap-workshop/blob/main/install/workshop/README.md
+cd /home/holuser/tap-workshop
+docker build . -t 192.168.0.2:30003/tanzu-e2e/eduk8s-tap-workshop
+docker push 192.168.0.2:30003/tanzu-e2e/eduk8s-tap-workshop
+
+cd /home/holuser/tap-workshop/install/workshop
+#bash install-metacontrollers.sh /home/holuser/tap-workshop/install/values/values.yaml
+
+bash install-rabbit-operator.sh
+
+
+sed -i "s/<tap-port>/$port/g" /home/holuser/tap-workshop/workshop/content/exercises/01-App-Accelerator.md
+sed -i "s/<tap-port>/$port/g" /home/holuser/tap-workshop/workshop/content/exercises/04-Deployment.md
+
+bash install-workshop.sh /home/holuser/tap-workshop/install/values/values.yaml
+echo -e "TAP Workshop \n  HOST=tap-demos-ui.192.168.0.2.nip.io\n  Username=learningcenter \n  Password=$(kubectl get trainingportals tap-demos -o json | jq -r .status[].credentials.admin.password)"
+
+
