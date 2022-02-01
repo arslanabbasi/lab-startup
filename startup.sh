@@ -120,6 +120,7 @@ touch /home/holuser/Desktop/READY
 ## Installing workshop pre-reqs
 cd /home/holuser
 git clone https://github.com/arslanabbasi/tap-workshop.git
+sudo chown -R holuser:holuser tap-workshop/
 
 sed -i "s/<tap-port>/$port/g" /home/holuser/tap-workshop/workshop/content/exercises/01-App-Accelerator.md
 sed -i "s/<tap-port>/$port/g" /home/holuser/tap-workshop/workshop/content/exercises/04-Deployment.md
