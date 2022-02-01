@@ -116,7 +116,7 @@ notify-send "LAB is ready" -t 100000 -i /home/holuser/tanzu.svg
 rm -f /home/holuser/Desktop/INSTALLING-TAP
 touch /home/holuser/Desktop/READY
 
-exit 1
+
 ## Installing workshop pre-reqs
 cd /home/holuser
 git clone https://github.com/arslanabbasi/tap-workshop.git
