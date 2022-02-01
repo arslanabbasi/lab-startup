@@ -114,8 +114,9 @@ notify-send "LAB is ready" -t 100000 -i /home/holuser/tanzu.svg
 rm -f /home/holuser/Desktop/INSTALLING-TAP
 touch /home/holuser/Desktop/READY
 
-
+exit 1
 ## Installing workshop pre-reqs
+cd /home/holuser
 git clone https://github.com/arslanabbasi/tap-workshop.git
 
 # Installing ytt
@@ -134,7 +135,7 @@ bash /home/holuser/tap-workshop/install/gitea/install-gitea.sh /home/holuser/tap
 giteaIP=$(k get svc -n gitea gitea-http -o json | jq -r .spec.clusterIP)
 echo "Gitea IP:port - $giteaIP:3000"
 
-exit 1
+
 # Installing Workshop
 # https://github.com/arslanabbasi/tap-workshop/blob/main/install/workshop/README.md
 cd /home/holuser/tap-workshop
