@@ -119,6 +119,9 @@ exit 1
 cd /home/holuser
 git clone https://github.com/arslanabbasi/tap-workshop.git
 
+sed -i "s/<tap-port>/$port/g" /home/holuser/tap-workshop/workshop/content/exercises/01-App-Accelerator.md
+sed -i "s/<tap-port>/$port/g" /home/holuser/tap-workshop/workshop/content/exercises/04-Deployment.md
+
 # Installing ytt
 wget -O- https://carvel.dev/install.sh > install.sh
 
@@ -146,10 +149,6 @@ cd /home/holuser/tap-workshop/install/workshop
 #bash install-metacontrollers.sh /home/holuser/tap-workshop/install/values/values.yaml
 
 bash install-rabbit-operator.sh
-
-
-sed -i "s/<tap-port>/$port/g" /home/holuser/tap-workshop/workshop/content/exercises/01-App-Accelerator.md
-sed -i "s/<tap-port>/$port/g" /home/holuser/tap-workshop/workshop/content/exercises/04-Deployment.md
 
 bash install-workshop.sh /home/holuser/tap-workshop/install/values/values.yaml
 echo -e "TAP Workshop \n  HOST=tap-demos-ui.192.168.0.2.nip.io\n  Username=learningcenter \n  Password=$(kubectl get trainingportals tap-demos -o json | jq -r .status[].credentials.admin.password)"
