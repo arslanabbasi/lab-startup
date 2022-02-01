@@ -138,7 +138,8 @@ bash /home/holuser/tap-workshop/install/gitea/install-gitea.sh /home/holuser/tap
 
 
 giteaIP=$(kubectl get svc -n gitea gitea-http -o json | jq -r .spec.clusterIP)
-echo "Gitea IP:port - $giteaIP:3000"
+echo "Gitea IP:port - $giteaIP:3000\n Username=gitea_admin\n Password=VMware1!"
+
 
 
 # Installing Workshop
