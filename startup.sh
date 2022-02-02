@@ -57,8 +57,8 @@ echo "Package list"
 tanzu package available list --namespace tap-install
 #echo "Package tap"
 #tanzu package available list tap.tanzu.vmware.com --namespace tap-install
-echo "harbor"
-curl -v https://192.168.0.2:30003
+echo "Checking if Harbor is up"
+#curl -v https://192.168.0.2:30003
 
 counter=0
 while [ "True" ]
@@ -73,6 +73,7 @@ do
     echo "Harbor is up. Continuing with install"
     break
   fi
+  echo "Waiting for Harbor to be up"
   sleep 5
 done
 
