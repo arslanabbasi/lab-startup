@@ -113,10 +113,6 @@ echo "Internal Harbor: https://$ip:30003 - admin / VMware1!"
 echo "SSH Details: ssh holuser@$(curl myip.oc.vmware.com 2>/dev/null)"
 echo "Password: VMware1!"
 
-notify-send "LAB is ready" -t 100000 -i /home/holuser/tanzu.svg
-rm -f /home/holuser/Desktop/INSTALLING-TAP
-touch /home/holuser/Desktop/READY
-
 
 ## Installing workshop pre-reqs
 cd /home/holuser
@@ -188,3 +184,6 @@ bash install-workshop.sh /home/holuser/tap-workshop/install/values/values.yaml
 echo -e "TAP Workshop \n  HOST=tap-demos-ui.192.168.0.2.nip.io\n  Username=learningcenter \n  Password=$(kubectl get trainingportals tap-demos -o json | jq -r .status[].credentials.admin.password)"
 
 
+notify-send "LAB is ready" -t 100000 -i /home/holuser/tanzu.svg
+rm -f /home/holuser/Desktop/INSTALLING-TAP
+touch /home/holuser/Desktop/READY
