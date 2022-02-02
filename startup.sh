@@ -173,7 +173,7 @@ git config user.name gitea_admin
 git config user.email "gitea_admin@example.com"
 git add .
 git commit -a -m "Commiting changes"
-git remote add gitea http://gitea_admin:"VMware1!"@172.14.32.175:3000/gitea_admin/tap-workshop.git
+git remote add gitea http://gitea_admin:"VMware1!"@$giteaIP:3000/gitea_admin/tap-workshop.git
 git push gitea main
 
 docker build . -t 192.168.0.2:30003/tanzu-e2e/eduk8s-tap-workshop
