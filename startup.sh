@@ -66,7 +66,7 @@ do
   if [[ $counter -ge 100 ]]; then echo "Exiting, Harbor is not up";exit 1; fi
   counter=$counter+1
 
-  curl -v https://192.168.0.2:30003
+  curl -v https://192.168.0.2:30003 > /dev/null 2>&1
   if [[ $? -eq 0 ]]
   then
     sleep 5
@@ -148,7 +148,7 @@ do
   if [[ $counter -ge 100 ]]; then echo "Exiting, Gitea is not up";exit 1; fi
   counter=$counter+1
 
-  curl -v http://$giteaIP:3000
+  curl -v http://$giteaIP:3000 > /dev/null 2>&1
   if [[ $? -eq 0 ]]
   then
     sleep 5
