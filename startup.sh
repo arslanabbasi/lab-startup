@@ -164,7 +164,7 @@ done
 cd /home/holuser/tap-workshop
 
 # Updating files location for tap workshop
-sed -i "s/<workshop-gitea-url>/http://$giteaIP:3000/gitea_admin/tap-workshop/archive/main.tar.gz?path=tap-workshop/g" /home/holuser/tap-workshop/workshop/resources/tap-overview.yaml
+sed -i "s/<workshop-gitea-url>/http:\/\/$giteaIP:3000\/gitea_admin\/tap-workshop\/archive\/main.tar.gz?path=tap-workshop/g" /home/holuser/tap-workshop/resources/tap-overview.yaml
 #git remote remove origin
 #git init
 #git checkout -b main
