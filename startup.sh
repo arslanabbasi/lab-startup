@@ -133,7 +133,6 @@ sudo bash install.sh
 ytt version
 
 # Intall gitea
-
 kubectl create namespace gitea
 bash /home/holuser/tap-workshop/install/gitea/install-gitea.sh /home/holuser/tap-workshop/install/values/values.yaml
 
@@ -158,9 +157,24 @@ do
   sleep 5
 done
 
+
+
 # Installing Workshop
 # https://github.com/arslanabbasi/tap-workshop/blob/main/install/workshop/README.md
 cd /home/holuser/tap-workshop
+
+# Updating files location for tap workshop
+sed -i "s/<workshop-gitea-url>/http://$giteaIP:3000/gitea_admin/tap-workshop/archive/main.tar.gz?path=tap-workshop/g" /home/holuser/tap-workshop/workshop/resources/tap-overview.yaml
+#git remote remove origin
+#git init
+#git checkout -b main
+git config user.name gitea_admin
+git config user.email "gitea_admin@example.com"
+git add .
+git commit -a -m "Commiting changes"
+git remote add gitea http://gitea_admin:"VMware1!"@172.14.32.175:3000/gitea_admin/tap-workshop.git
+git push gitea main
+
 docker build . -t 192.168.0.2:30003/tanzu-e2e/eduk8s-tap-workshop
 docker push 192.168.0.2:30003/tanzu-e2e/eduk8s-tap-workshop
 
