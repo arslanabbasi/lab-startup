@@ -2,7 +2,7 @@
 exec 3>&1 4>&2
 trap 'exec 2>&4 1>&3' 0 1 2 3
 exec 1>/home/holuser/Desktop/install.log 2>&1
-set -ex
+#set -ex
 
 sleep 5
 
@@ -19,7 +19,7 @@ notify-send "Installing TAP - please wait" -t 100000 -i /home/holuser/tanzu.svg
 sudo chown holuser:holuser /home/holuser/Desktop/install.log
 echo "" > /home/holuser/.bash_history
 
-sudo rm -r /var/crash/*
+#sudo rm -r /var/crash/*
 
 cat /home/holuser/tap-values-dev-harbor.yaml
 
