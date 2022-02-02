@@ -77,8 +77,11 @@ do
 done
 
 #ip=$(curl myip.oc.vmware.com)
+touch /home/holuser/Desktop/creds
+chown holuser:holuser /home/holuser/Desktop/creds
+curl -s myip.oc.vmware.com >> /home/holuser/Desktop/creds
 ip="192.168.0.2"
-echo "My IP: $ip"
+echo "My IP: $ip" >> /home/holuser/Desktop/creds
 #echo "Setting tap values yaml file"
 #sed -i "s/10.126.106.14:/$ip:/g" /home/holuser/tap-values-dev-harbor.yaml
 #sed -i "s/10.126.106.14./192.168.0.2./g" /home/holuser/tap-values-dev-harbor.yaml
@@ -108,10 +111,10 @@ tanzu package installed update tap --package-name tap.tanzu.vmware.com --version
 echo "Install Finished"
 echo
 echo
-echo "TAP GUI: $ip:$port"
-echo "Internal Harbor: https://$ip:30003 - admin / VMware1!"
-echo "SSH Details: ssh holuser@$(curl myip.oc.vmware.com 2>/dev/null)"
-echo "Password: VMware1!"
+echo "TAP GUI: $ip:$port" >> /home/holuser/Desktop/creds
+echo "Internal Harbor: https://$ip:30003 - admin / VMware1!" >> /home/holuser/Desktop/creds
+echo "SSH Details: ssh holuser@$(curl -s myip.oc.vmware.com)" >> /home/holuser/Desktop/creds
+echo " Password: VMware1!" >> /home/holuser/Desktop/creds
 
 
 ## Installing workshop pre-reqs
@@ -135,7 +138,7 @@ bash /home/holuser/tap-workshop/install/gitea/install-gitea.sh /home/holuser/tap
 
 
 giteaIP=$(kubectl get svc -n gitea gitea-http -o json | jq -r .spec.clusterIP)
-echo -e "Gitea IP:port - $giteaIP:3000\n Username=gitea_admin\n Password=VMware1!"
+echo -e "Gitea IP:port - $giteaIP:3000\n Username=gitea_admin\n Password=VMware1!" >> /home/holuser/Desktop/creds
 sed -i "s/<gitea-url>/$giteaIP:3000/g" /home/holuser/tap-workshop/workshop/setup.d/01-gitops-repo.sh
 
 counter=0
@@ -181,7 +184,7 @@ cd /home/holuser/tap-workshop/install/workshop
 bash install-rabbit-operator.sh
 
 bash install-workshop.sh /home/holuser/tap-workshop/install/values/values.yaml
-echo -e "TAP Workshop \n  HOST=tap-demos-ui.192.168.0.2.nip.io\n  Username=learningcenter \n  Password=$(kubectl get trainingportals tap-demos -o json | jq -r .status[].credentials.admin.password)"
+echo -e "TAP Workshop \n  HOST=tap-demos-ui.192.168.0.2.nip.io\n  Username=learningcenter \n  Password=$(kubectl get trainingportals tap-demos -o json | jq -r .status[].credentials.admin.password)" >> /home/holuser/Desktop/creds
 
 
 notify-send "LAB is ready" -t 100000 -i /home/holuser/tanzu.svg
