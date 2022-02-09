@@ -81,7 +81,7 @@ done
 touch /home/holuser/Desktop/creds
 chown holuser:holuser /home/holuser/Desktop/creds
 curl -s myip.oc.vmware.com >> /home/holuser/Desktop/creds
-echo
+echo " "
 ip="192.168.0.2"
 echo "My IP: $ip" >> /home/holuser/Desktop/creds
 #echo "Setting tap values yaml file"
