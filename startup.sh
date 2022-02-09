@@ -6,6 +6,16 @@ exec 1>/home/holuser/Desktop/install.log 2>&1
 
 sleep 5
 
+
+FILE=/home/holuser/Desktop/READY
+if [ -f "$FILE" ]; then
+    echo "TAP already installed!"
+    
+    
+    exit 0
+fi
+
+
 touch /home/holuser/Desktop/INSTALLING-TAP
 
 
