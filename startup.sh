@@ -178,6 +178,9 @@ cd /home/holuser/tap-workshop
 # Updating files location for tap workshop
 sed -i "s/<workshop-gitea-url>/http:\/\/$giteaIP:3000\/gitea_admin\/tap-workshop\/archive\/main.tar.gz?path=tap-workshop/g" /home/holuser/tap-workshop/resources/tap-overview.yaml
 sed -i "s/<workshop-gitea-url>/http:\/\/$giteaIP:3000/g" /home/holuser/tap-workshop/workshop/profile
+acc-url=$(kubectl get service acc-server -n accelerator-system -o json| jq -r .spec.clusterIP)
+sed -i "s/<accelerator-url>/http:\/\/$acc-url/g" /home/holuser/tap-workshop/workshop/content/exercises/02-Workload.md
+
 
 #git remote remove origin
 #git init
