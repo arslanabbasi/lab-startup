@@ -6,6 +6,7 @@ exec 1>/home/holuser/Desktop/install.log 2>&1
 
 sleep 5
 
+echo "" > /home/holuser/.bash_history
 
 FILE=/home/holuser/Desktop/READY
 if [ -f "$FILE" ]; then
@@ -27,7 +28,6 @@ wget https://d1fto35gcfffzn.cloudfront.net/tanzu/tanzu-bug.svg -O /home/holuser/
 notify-send "Installing TAP - please wait" -t 100000 -i /home/holuser/tanzu.svg
 
 sudo chown holuser:holuser /home/holuser/Desktop/install.log
-echo "" > /home/holuser/.bash_history
 
 #sudo rm -r /var/crash/*
 
