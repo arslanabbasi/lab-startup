@@ -6,23 +6,46 @@ exec 1>/home/holuser/Desktop/install.log 2>&1
 
 sleep 5
 
-echo "" > /home/holuser/.bash_history
-
-FILE=/home/holuser/Desktop/READY
-if [ -f "$FILE" ]; then
-    echo "TAP already installed!"
-    
-    
-    exit 0
-fi
-
-
 touch /home/holuser/Desktop/INSTALLING-TAP
 
 
 # Version 1.0.0
 export KUBECONFIG="/home/holuser/.kube/config"
 export HOME="/home/holuser"
+
+echo "" > /home/holuser/.bash_history
+
+FILE=/home/holuser/Desktop/READY
+if [ -f "$FILE" ]; then
+    echo "TAP already installed!"
+    
+    echo "Waiting for harbor to come up"
+    
+    counter=0
+    while [ "True" ]
+    do
+      if [[ $counter -ge 100 ]]; then echo "Exiting, Harbor is not up";exit 1; fi
+      counter=$counter+1
+
+      curl -v https://192.168.0.2:30003 > /dev/null 2>&1
+      if [[ $? -eq 0 ]]
+      then
+        sleep 5
+        echo "Harbor is up. Continuing with install"
+        break
+      fi
+      echo "Waiting for Harbor to be up"
+      sleep 5
+    done
+    
+    echo "Updating TAP"
+    tanzu package installed update tap --package-name tap.tanzu.vmware.com --version 1.0.0 -n tap-install -f /home/holuser/tap-values-dev-harbor.yaml
+
+    tanzu package installed list -A
+
+    exit 0
+fi
+
 
 wget https://d1fto35gcfffzn.cloudfront.net/tanzu/tanzu-bug.svg -O /home/holuser/tanzu.svg
 notify-send "Installing TAP - please wait" -t 100000 -i /home/holuser/tanzu.svg
