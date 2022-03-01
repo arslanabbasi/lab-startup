@@ -73,7 +73,6 @@ if [ -f "$FILE" ]; then
     do
       if [[ $counter -ge 100 ]]; then echo "Exiting, Clusterbuilder is not up!";exit 1; fi
       counter=$((counter + 5))
-      echo $counter
 
       echo "Clusterbuilder base status: $(kubectl get clusterbuilder base -o json | jq -r .status.conditions[].status)"
       if [ $(kubectl get clusterbuilder base -o json | jq -r .status.conditions[].status) != "True" ]; then
@@ -81,6 +80,7 @@ if [ -f "$FILE" ]; then
         kubectl delete clusterbuilder base
         kubectl apply -f /home/holuser/cb-base.yaml
         sleep 5
+        echo "Waiting $counter"
         echo "Clusterbuilder base status: $(kubectl get clusterbuilder base -o json | jq -r .status.conditions[].status)"
       else
         break
