@@ -97,6 +97,31 @@ if [ -f "$FILE" ]; then
      echo "Clusterbuilder default status: $(kubectl get clusterbuilder default -o json | jq -r .status.conditions[].status)"
     fi
     
+    ip=$(curl -s myip.oc.vmware.com)
+    cat >/home/holuser/Desktop/creds <<EOL
+TAP GUI
+ url: 192.168.0.2:32085
+
+Internal Harbor
+ url: https://192.168.0.2:30003
+ username: admin
+ password: VMware1!
+
+SSH
+ url: holuser@${ip}
+ password: VMware1!
+
+Gitea
+ url: http://172.14.3.43:3000
+ username: gitea_admin
+ password: VMware1!
+
+TAP Workshop
+  url: tap-demos-ui.192.168.0.2.nip.io
+  username: admin
+  password: VMware1!
+EOL
+    
     rm -f /home/holuser/Desktop/INSTALLING-TAP
     notify-send "LAB is ready" -t 100000 -i /home/holuser/tanzu.svg
 
