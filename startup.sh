@@ -44,9 +44,10 @@ if [ -f "$FILE" ]; then
     
     echo "Updating TAP"
     tanzu package installed update tap --package-name tap.tanzu.vmware.com --version 1.0.0 -n tap-install -f /home/holuser/tap-values-dev-harbor.yaml
-
     tanzu package installed list -A
     
+    kubectl get clusterstack
+    kubectl get clusterbuilder
     kubectl delete pod -n kpack $(kubectl get pods -n kpack |grep -i kpack-contro | cut -d " " -f1)
     sleep 20
 
