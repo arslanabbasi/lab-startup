@@ -15,6 +15,10 @@ export HOME="/home/holuser"
 
 echo "" > /home/holuser/.bash_history
 
+#wget https://d1fto35gcfffzn.cloudfront.net/tanzu/tanzu-bug.svg -O /home/holuser/tanzu.svg
+notify-send "Installing TAP - please wait" -t 100000 -i /home/holuser/tanzu.svg
+
+
 FILE=/home/holuser/Desktop/READY
 if [ -f "$FILE" ]; then
     echo "TAP already installed!"
@@ -42,14 +46,62 @@ if [ -f "$FILE" ]; then
     tanzu package installed update tap --package-name tap.tanzu.vmware.com --version 1.0.0 -n tap-install -f /home/holuser/tap-values-dev-harbor.yaml
 
     tanzu package installed list -A
+    
+    kubectl delete pod -n kpack $(kubectl get pods -n kpack |grep -i kpack-contro | cut -d " " -f1)
+    sleep 20
+
+    echo "Clusterstack base status: $(kubectl get clusterstack base -o json | jq -r .status.conditions[].status)"
+    if [ $(kubectl get clusterstack base -o json | jq -r .status.conditions[].status) != "True" ]; then
+      echo " Fixing clusterstack base"
+      kubectl delete clusterstack base
+      kubectl apply -f /home/holuser/cs-base.yaml
+      sleep 2
+     echo "Clusterstack base status: $(kubectl get clusterstack base -o json | jq -r .status.conditions[].status)"
+    fi
+
+    echo "Clusterstack default status: $(kubectl get clusterstack default -o json | jq -r .status.conditions[].status)"
+    if [ $(kubectl get clusterstack default -o json | jq -r .status.conditions[].status) != "True" ]; then
+      echo " Fixing clusterstack default"
+      kubectl delete clusterstack default
+      kubectl apply -f /home/holuser/cs-default.yaml
+      sleep 2
+      echo "Clusterstack default status: $(kubectl get clusterstack default -o json | jq -r .status.conditions[].status)"
+    fi
+
+    counter=0
+    while [ "True" ]
+    do
+      if [[ $counter -ge 100 ]]; then echo "Exiting, Clusterbuilder is not up!";exit 1; fi
+      counter=$((counter + 5))
+      echo $counter
+
+      echo "Clusterbuilder base status: $(kubectl get clusterbuilder base -o json | jq -r .status.conditions[].status)"
+      if [ $(kubectl get clusterbuilder base -o json | jq -r .status.conditions[].status) != "True" ]; then
+        echo " Fixing clusterbuilder base"
+        kubectl delete clusterbuilder base
+        kubectl apply -f /home/holuser/cb-base.yaml
+        sleep 5
+        echo "Clusterbuilder base status: $(kubectl get clusterbuilder base -o json | jq -r .status.conditions[].status)"
+      else
+        break
+      fi
+    done
+
+    echo "Clusterbuilder default status: $(kubectl get clusterbuilder default -o json | jq -r .status.conditions[].status)"
+    if [ $(kubectl get clusterbuilder default -o json | jq -r .status.conditions[].status) != "True" ]; then
+      echo " Fixing clusterbuilder default"
+      kubectl delete clusterbuilder default
+      kubectl apply -f /home/holuser/cb-default.yaml
+      sleep 5
+     echo "Clusterbuilder default status: $(kubectl get clusterbuilder default -o json | jq -r .status.conditions[].status)"
+    fi
+    
     rm -f /home/holuser/Desktop/INSTALLING-TAP
+    notify-send "LAB is ready" -t 100000 -i /home/holuser/tanzu.svg
 
     exit 0
 fi
 
-
-wget https://d1fto35gcfffzn.cloudfront.net/tanzu/tanzu-bug.svg -O /home/holuser/tanzu.svg
-notify-send "Installing TAP - please wait" -t 100000 -i /home/holuser/tanzu.svg
 
 sudo chown holuser:holuser /home/holuser/Desktop/install.log
 
