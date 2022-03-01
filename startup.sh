@@ -6,7 +6,7 @@ exec 1>/home/holuser/Desktop/install.log 2>&1
 
 sleep 5
 
-touch /home/holuser/Desktop/INSTALLING-TAP
+#touch /home/holuser/Desktop/INSTALLING-TAP
 
 
 # Version 1.0.0
