@@ -19,7 +19,7 @@ FILE=/home/holuser/Desktop/READY
 if [ -f "$FILE" ]; then
     echo "TAP already installed!"
     
-    echo "Waiting for harbor to come up"
+    echo "Checking internal Harbor"
     
     counter=0
     while [ "True" ]
@@ -42,6 +42,7 @@ if [ -f "$FILE" ]; then
     tanzu package installed update tap --package-name tap.tanzu.vmware.com --version 1.0.0 -n tap-install -f /home/holuser/tap-values-dev-harbor.yaml
 
     tanzu package installed list -A
+    rm -f /home/holuser/Desktop/INSTALLING-TAP
 
     exit 0
 fi
