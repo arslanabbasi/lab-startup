@@ -25,7 +25,7 @@ if [ -f "$FILE" ]; then
     while [ "True" ]
     do
       if [[ $counter -ge 100 ]]; then echo "Exiting, Harbor is not up";exit 1; fi
-      counter=$counter+1
+      counter=$((counter + 1))
 
       curl -v https://192.168.0.2:30003 > /dev/null 2>&1
       if [[ $? -eq 0 ]]
@@ -62,7 +62,7 @@ counter=0
 while [ "True" ]
 do
   if [[ $counter -ge 100 ]]; then echo "Exiting, k8s is not up";exit 1; fi
-  counter=$counter+1
+  counter=$((counter + 1))
 
   kubectl cluster-info --kubeconfig /home/holuser/.kube/config
   if [[ $? -eq 0 ]]
@@ -98,7 +98,7 @@ counter=0
 while [ "True" ]
 do
   if [[ $counter -ge 100 ]]; then echo "Exiting, Harbor is not up";exit 1; fi
-  counter=$counter+1
+  counter=$((counter + 1))
 
   curl -v https://192.168.0.2:30003 > /dev/null 2>&1
   if [[ $? -eq 0 ]]
@@ -181,7 +181,7 @@ counter=0
 while [ "True" ]
 do
   if [[ $counter -ge 100 ]]; then echo "Exiting, Gitea is not up";exit 1; fi
-  counter=$counter+1
+  counter=$((counter + 1))
 
   curl -v http://$giteaIP:3000 > /dev/null 2>&1
   if [[ $? -eq 0 ]]
