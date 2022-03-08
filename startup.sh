@@ -122,7 +122,7 @@ TAP Workshop
   password: VMware1!
 EOL
     
-    xrand --output Virtual1 --mode 1920x1200
+    xrandr --output Virtual1 --mode 1920x1200
     rm -f /home/holuser/Desktop/INSTALLING-TAP
     notify-send "LAB is ready" -t 100000 -i /home/holuser/tanzu.svg
 
