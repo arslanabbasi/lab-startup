@@ -56,6 +56,7 @@ if [ -f "$FILE" ]; then
       echo " Fixing clusterstack base"
       kubectl delete clusterstack base
       kubectl apply -f /home/holuser/cs-base.yaml
+      kubectl delete pod -n kpack $(kubectl get pods -n kpack |grep -i kpack-contro | cut -d " " -f1)
       sleep 2
      echo "Clusterstack base status: $(kubectl get clusterstack base -o json | jq -r .status.conditions[].status)"
     fi
@@ -65,6 +66,7 @@ if [ -f "$FILE" ]; then
       echo " Fixing clusterstack default"
       kubectl delete clusterstack default
       kubectl apply -f /home/holuser/cs-default.yaml
+      kubectl delete pod -n kpack $(kubectl get pods -n kpack |grep -i kpack-contro | cut -d " " -f1)
       sleep 2
       echo "Clusterstack default status: $(kubectl get clusterstack default -o json | jq -r .status.conditions[].status)"
     fi
@@ -80,6 +82,7 @@ if [ -f "$FILE" ]; then
         echo " Fixing clusterbuilder base"
         kubectl delete clusterbuilder base
         kubectl apply -f /home/holuser/cb-base.yaml
+        kubectl delete pod -n kpack $(kubectl get pods -n kpack |grep -i kpack-contro | cut -d " " -f1)
         sleep 5
         echo "Waiting $counter"
         echo "Clusterbuilder base status: $(kubectl get clusterbuilder base -o json | jq -r .status.conditions[].status)"
@@ -93,6 +96,7 @@ if [ -f "$FILE" ]; then
       echo " Fixing clusterbuilder default"
       kubectl delete clusterbuilder default
       kubectl apply -f /home/holuser/cb-default.yaml
+      kubectl delete pod -n kpack $(kubectl get pods -n kpack |grep -i kpack-contro | cut -d " " -f1)
       sleep 5
      echo "Clusterbuilder default status: $(kubectl get clusterbuilder default -o json | jq -r .status.conditions[].status)"
     fi
