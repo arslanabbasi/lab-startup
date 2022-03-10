@@ -127,6 +127,7 @@ TAP Workshop
 EOL
     
     #xrandr --output Virtual1 --mode 1920x1200
+    echo "Lab is Ready for use"
     rm -f /home/holuser/Desktop/INSTALLING-TAP
     notify-send "LAB is ready" -t 100000 -i /home/holuser/tanzu.svg
 
