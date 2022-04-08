@@ -42,6 +42,10 @@ if [ -f "$FILE" ]; then
       sleep 5
     done
     
+    giteaIP=$(kubectl get svc -n gitea gitea-http -o json | jq -r .spec.clusterIP)
+    echo -e "Gitea http://$giteaIP:3000\n Username=gitea_admin\n Password=VMware1!" >> /home/holuser/Desktop/creds
+    sed -i "s/<gitea-url>/$giteaIP:3000/g" /home/holuser/tap-workshop/workshop/setup.d/01-gitops-repo.sh
+
     counter=0
     while [ "True" ]
     do
