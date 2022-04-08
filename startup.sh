@@ -144,6 +144,8 @@ TAP Workshop
 EOL
     
     #xrandr --output Virtual1 --mode 1920x1200
+    kubectl delete pod -n tap-demos-w01 $(k get pods -n tap-demos-w01 -o json | jq -r .items[].metadata.name)
+    kubectl get pods -n tap-demos-w01
     echo "Lab is Ready for use"
     rm -f /home/holuser/Desktop/INSTALLING-TAP
     notify-send "LAB is ready" -t 100000 -i /home/holuser/tanzu.svg
