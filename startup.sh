@@ -42,6 +42,22 @@ if [ -f "$FILE" ]; then
       sleep 5
     done
     
+    counter=0
+    while [ "True" ]
+    do
+      if [[ $counter -ge 100 ]]; then echo "Exiting, Gitea is not up";exit 1; fi
+      counter=$((counter + 1))
+
+      curl -v http://$giteaIP:3000 > /dev/null 2>&1
+      if [[ $? -eq 0 ]]
+      then
+        sleep 5
+        echo "Gitea is up. Continuing"
+        break
+      fi
+      sleep 5
+    done
+
     echo "Updating TAP"
     tanzu package installed update tap --package-name tap.tanzu.vmware.com --version 1.0.0 -n tap-install -f /home/holuser/tap-values-dev-harbor.yaml
     tanzu package installed list -A
