@@ -8,7 +8,11 @@ sleep 30
 sed -i "s/Exec=\/usr\/bin\/firefox/Exec=sh -c \"sleep 600 \&\& \/usr\/bin\/firefox\"/g" /home/holuser/.config/autostart/firefox.desktop
 #touch /home/holuser/Desktop/INSTALLING-TAP
 
-
+FILE=/home/holuser/restart
+if [ ! -f "$FILE" ]; then
+    touch /home/holuser/Desktop/restart
+    reboot
+fi
 # Version 1.0.0
 export KUBECONFIG="/home/holuser/.kube/config"
 export HOME="/home/holuser"
