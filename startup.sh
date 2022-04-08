@@ -5,7 +5,7 @@ exec 1>/home/holuser/Desktop/install.log 2>&1
 #set -ex
 
 sleep 30
-
+sed -i "s/Exec=\/usr\/bin\/firefox/Exec=sh -c \"sleep 600 \&\& \/usr\/bin\/firefox\"/g" /home/holuser/.config/autostart/firefox.desktop
 #touch /home/holuser/Desktop/INSTALLING-TAP
 
 
